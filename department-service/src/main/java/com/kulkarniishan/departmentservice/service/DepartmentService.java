@@ -20,6 +20,6 @@ public class DepartmentService {
 
     public Department getDepartmentById(Long departmentId) {
         log.info("Inside getDepartment method of DepartmentService!");
-        return departmentRepository.getReferenceById(departmentId);
+        return departmentRepository.findByDepartmentId(departmentId);
     }
 }
