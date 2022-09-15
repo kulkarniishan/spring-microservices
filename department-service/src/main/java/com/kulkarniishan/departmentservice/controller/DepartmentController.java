@@ -3,6 +3,7 @@ package com.kulkarniishan.departmentservice.controller;
 import com.kulkarniishan.departmentservice.entity.Department;
 import com.kulkarniishan.departmentservice.service.DepartmentService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -10,9 +11,10 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class DepartmentController {
 
+    @Autowired
     private DepartmentService departmentService;
 
-    @PostMapping("/")
+    @PostMapping("")
     public Department createDepartment(@RequestBody Department department){
         log.info("Inside saveDepartment method of DepartmentController!");
         return departmentService.createDepartment(department);
