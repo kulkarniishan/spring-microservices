@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/fallback")
 public class FallbackController {
 
-    @GetMapping("/userServiceFallBack")
+    @GetMapping("/userServiceFallback")
     public String userServiceFallbackMethod() {
         return "User Service is taking longer than expected. " + "Please try again later";
     }

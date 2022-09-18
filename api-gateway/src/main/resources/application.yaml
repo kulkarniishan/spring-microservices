@@ -15,7 +15,7 @@ spring:
             - name: CircuitBreaker
               args:
                 name: USER-SERVICE
-                fallbackuri: forward:/fallback/userServiceFallBack
+                fallbackuri: forward:/fallback/userServiceFallback
         - id: DEPARTMENT-SERVICE
           uri: lb://DEPARTMENT-SERVICE
           predicates:
@@ -24,40 +24,40 @@ spring:
             - name: CircuitBreaker
               args:
                 name: DEPARTMENT-SERVICE
-                fallbackuri: forward:/fallback/departmentServiceFallBack
+                fallbackuri: forward:/fallback/departmentServiceFallback
 
-#resilience4j:
-#  circuitbreaker:
-#    configs:
-#      default:
-#        slow-call-duration-threshold: 1
-#        slow-call-rate-threshold: 50
-#        register-health-indicator: true
-#        event-consumer-buffer-size: 10
-#        failure-rate-threshold: 50
-#        minimum-number-of-calls: 5
-#        automatic-transition-from-open-to-half-open-enabled: true
-#        wait-duration-in-open-state: 5
-#        permitted-number-of-calls-in-half-open-state: 3
-#        sliding-window-size: 10
-#        sliding-window-type: COUNT_BASED
-#    instances:
-#      USER-SERVICE:
-#        base-config: default
-#      DEPARTMENT-SERVICE:
-#        base-config: default
-#
-#management:
-#  health:
-#    circuitbreakers:
-#      enabled: true
-#  endpoints:
-#    web:
-#      exposure:
-#        include: health
-#  endpoint:
-#    health:
-#      show-details: always
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        slow-call-duration-threshold: 1
+        slow-call-rate-threshold: 50
+        register-health-indicator: true
+        event-consumer-buffer-size: 10
+        failure-rate-threshold: 50
+        minimum-number-of-calls: 2
+        automatic-transition-from-open-to-half-open-enabled: true
+        wait-duration-in-open-state: 5
+        permitted-number-of-calls-in-half-open-state: 3
+        sliding-window-size: 10
+        sliding-window-type: COUNT_BASED
+    instances:
+      USER-SERVICE:
+        base-config: default
+      DEPARTMENT-SERVICE:
+        base-config: default
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
 
 
 eureka:
